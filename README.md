@@ -15,20 +15,7 @@ The React Compiler is not enabled on this template because of its impact on dev 
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
 
-# 1. Crear el proyecto de React con Vite
-npm create vite@latest practica-react -- --template react
 
-# 2. Entrar a la carpeta del proyecto
-cd practica-react
+https://github.com/juandeveloperfullstack-creator/examen-react.git
 
-# 3. Instalar las dependencias base
-npm install
-
-# 4. Instalar React Router, Axios y Zustand
-npm install react-router-dom axios zustand
-
-# 5. Instalar Tailwind CSS y su plugin para Vite
-npm install tailwindcss @tailwindcss/vite
-
-# 6. Iniciar el servidor de desarrollo
-npm run dev
+https://juandeveloperfullstack-creator.github.io/examen-react/
