@@ -5,6 +5,7 @@ import Inicio from './pages/Inicio'
 import ProductosAxios from './pages/ProductosAxios'
 import ProductosFetch from './pages/ProductosFetch'
 import SectionCatalogo from './pages/SectionCatalogo'
+import SectionCompras from './pages/SectionCompras'
 
 function App() {
   return (
@@ -19,25 +20,27 @@ function App() {
           <Route path="axios" element={<ProductosAxios />} />
         </Route>
 
-        {/* Estas pantallas son temporales hasta completar las paginas de compras. */}
-        <Route
-          path="compras"
-          element={
-            <section>
-              <h1>Mi canasta</h1>
-              <p>Esta pagina se completara en el requerimiento de la canasta.</p>
-            </section>
-          }
-        />
-        <Route
-          path="compras/resumen"
-          element={
-            <section>
-              <h1>Mi pedido</h1>
-              <p>Esta pagina se completara en el requerimiento del pedido.</p>
-            </section>
-          }
-        />
+        {/* Ambas paginas de compras comparten la portada y las pestañas. */}
+        <Route path="compras" element={<SectionCompras />}>
+          <Route
+            index
+            element={
+              <section>
+                <h2>Mi canasta</h2>
+                <p>El contenido de la canasta se agregara despues.</p>
+              </section>
+            }
+          />
+          <Route
+            path="resumen"
+            element={
+              <section>
+                <h2>Mi pedido</h2>
+                <p>El resumen del pedido se agregara despues.</p>
+              </section>
+            }
+          />
+        </Route>
 
         {/* Muestra un mensaje si la direccion no corresponde a una pagina. */}
         <Route
