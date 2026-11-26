@@ -29,7 +29,7 @@ function Header() {
 
             {/* aqui se abre la canasta y se muestra la cantidad de unidades */}
             <Link
-                to="/carrito"
+                to="/compras"
                 className="site-header__cart"
                 aria-label={`Canasta: ${cantidadUnidades} unidades`}
             >
