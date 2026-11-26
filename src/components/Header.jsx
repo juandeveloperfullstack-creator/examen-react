@@ -1,24 +1,43 @@
-import { useEffect } from 'react';
-import { useCarritoStore } from '../store/useCarritoStore';
+// importaciones como el hook useEffect, link para navegar y usestorecarrito carrito global.
+import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useCarritoStore } from '../store/useCarritoStore'
 
 function Header() {
-    const cantidadProductos = useCarritoStore((state) =>
-    state.productos.reduce(
-        (total,producto) => total + (producto.cantidad ?? 1),
-        0,
-    ),
-)
+    // Cuenta las unidades de todos los productos guardados en la canasta.
+    const cantidadUnidades = useCarritoStore((state) =>
+        state.productos.reduce(
+            (total, producto) => total + (producto.cantidad ?? 1),
+            0,
+        ),
+    )
 
-useEffect(() => {
-    document.title =
-    cantidadProductos > 0
-    ? `(${cantidadProductos}) evidencia final`
-    : 'Evidencia Final'
-}, [cantidadProductos])
+    // Mantiene actualizado el texto que aparece en la pestana del navegador.
+    useEffect(() => {
+        document.title =
+            cantidadUnidades > 0
+                ? `(${cantidadUnidades}) evidencia final`
+                : 'Evidencia final'
+    }, [cantidadUnidades])
+
     return (
-        <header>
-            <span>Evidencia Final</span>
+        <header className="site-header">
+            {/* El nombre de la tienda tambien sirve para regresar al inicio. */}
+            <Link to="/" className="site-header__brand" aria-label="Merca Cauca, inicio">
+                <span>Merca Cauca</span>
+            </Link>
+
+            {/* aqui se abre la canasta y se muestra la cantidad de unidades */}
+            <Link
+                to="/carrito"
+                className="site-header__cart"
+                aria-label={`Canasta: ${cantidadUnidades} unidades`}
+            >
+                <span>Canasta</span>
+                <span className="site-header__cart-count">{cantidadUnidades}</span>
+            </Link>
         </header>
     )
 }
-export default Header;
+
+export default Header
