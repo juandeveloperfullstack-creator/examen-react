@@ -1,3 +1,4 @@
+/* Colores y alturas que se repiten en toda la tienda. Para cambiar el tono principal, empieza por aqui. */
 :root {
   --color-fondo: #f4f7f3;
   --color-superficie: #ffffff;
@@ -32,6 +33,7 @@
   box-sizing: border-box;
 }
 
+/* Ajustes generales para que la pagina use el espacio disponible sin margenes del navegador. */
 body {
   min-width: 320px;
   min-height: 100vh;
@@ -56,6 +58,7 @@ select {
   font: inherit;
 }
 
+/* Quita el destello azul del movil al tocar un control; el foco accesible se define mas abajo. */
 button,
 a,
 input,
@@ -63,11 +66,13 @@ select {
   -webkit-tap-highlight-color: #00000000;
 }
 
+/* Al navegar con teclado, este borde ayuda a ver que elemento esta seleccionado. */
 :where(a, button, input, select):focus-visible {
   outline: 3px solid var(--color-dorado);
   outline-offset: 3px;
 }
 
+/* Los botones sin accion disponible se ven apagados y no parecen clicables. */
 button:disabled {
   border-color: var(--color-borde);
   background: #e7ebe8;
@@ -76,6 +81,7 @@ button:disabled {
   transform: none;
 }
 
+/* Titulos y parrafos usan una base comun para que el texto mantenga el mismo ritmo. */
 h1,
 h2,
 h3 {
@@ -102,7 +108,7 @@ p {
   margin: 0 0 12px;
 }
 
-/* El encabezado y la navegacion quedan a la vista al recorrer la pagina. */
+/* La franja de marca queda fija arriba para seguir visible mientras se recorre la pagina. */
 .site-header {
   position: fixed;
   z-index: 30;
@@ -119,6 +125,7 @@ p {
   box-shadow: 0 3px 14px var(--sombra);
 }
 
+/* Nombre de la tienda a la izquierda y acceso a la canasta a la derecha. */
 .site-header__brand,
 .site-header__cart {
   display: inline-flex;
@@ -142,6 +149,7 @@ p {
   transition: background-color 160ms ease, transform 160ms ease;
 }
 
+/* El numero dentro del acceso a la canasta se presenta como una pequena insignia. */
 .site-header__cart-count {
   display: inline-grid;
   min-width: 25px;
@@ -153,6 +161,7 @@ p {
   color: var(--color-verde-oscuro);
 }
 
+/* El boton de la canasta cambia de tono al pasar el mouse y responde al hacer clic. */
 .site-header__cart:hover {
   background: var(--color-verde-oscuro);
   transform: translateY(-1px);
@@ -162,7 +171,7 @@ p {
   transform: translateY(1px);
 }
 
-/* Los botones del menu señalan claramente la pagina actual. */
+/* La barra queda debajo del encabezado y mantiene a mano las rutas principales. */
 .navbar {
   position: fixed;
   z-index: 29;
@@ -179,6 +188,7 @@ p {
   background: var(--color-superficie);
 }
 
+/* Estos controles comparten forma, color y tamano para que se reconozcan como acciones. */
 .navbar__button,
 .inicio__boton,
 .carrito button,
@@ -202,6 +212,7 @@ p {
     transform 160ms ease;
 }
 
+/* Al pasar el mouse, los botones se oscurecen; al pulsarlos, se mueven levemente. */
 .navbar__button:hover,
 .inicio__boton:hover,
 .carrito button:not(:disabled):hover,
@@ -219,6 +230,7 @@ p {
   transform: translateY(1px);
 }
 
+/* La ruta abierta se distingue del resto del menu con un borde dorado. */
 .navbar__button--active {
   border-color: var(--color-verde-oscuro);
   background: var(--color-verde-oscuro);
@@ -226,7 +238,7 @@ p {
   color: var(--color-superficie);
 }
 
-/* El pie permanece visible y reúne los datos del aprendiz y las APIs. */
+/* El pie permanece visible y reune los datos del aprendiz y los enlaces de las APIs. */
 .site-footer {
   position: fixed;
   z-index: 28;
@@ -246,10 +258,12 @@ p {
   font-size: 0.9rem;
 }
 
+/* Los datos del pie no necesitan el margen que tienen normalmente los parrafos. */
 .site-footer p {
   margin: 0;
 }
 
+/* Los enlaces de las APIs pueden pasar a otra linea si el espacio no alcanza. */
 .site-footer__apis {
   display: flex;
   flex-wrap: wrap;
@@ -267,7 +281,7 @@ p {
   color: var(--color-verde-oscuro);
 }
 
-/* El espacio superior e inferior evita que el contenido quede tapado. */
+/* Reserva espacio para las barras fijas de arriba y el pie fijo de abajo. */
 .app-layout__content {
   width: min(1200px, 100%);
   min-height: 100vh;
@@ -278,7 +292,7 @@ p {
     calc(var(--alto-pie) + 32px);
 }
 
-/* Tarjetas de bienvenida y espacios para las imagenes que aun no estan. */
+/* Inicio presenta las dos secciones en tarjetas; en movil se ordenan una debajo de otra. */
 .inicio {
   text-align: center;
 }
@@ -312,12 +326,14 @@ p {
   transition: box-shadow 180ms ease, transform 180ms ease;
 }
 
+/* Un pequeno movimiento distingue las tarjetas cuando se pasa el mouse por encima. */
 .inicio__tarjeta:hover,
 .producto-card:hover {
   box-shadow: 0 12px 26px var(--sombra);
   transform: translateY(-3px);
 }
 
+/* Muestran una indicacion en el espacio de las imagenes que aun no estan disponibles. */
 .inicio__imagen-placeholder,
 .catalogo__portada-placeholder,
 .compras__portada-placeholder {
@@ -338,7 +354,7 @@ p {
   margin-top: 8px;
 }
 
-/* Las pestañas comparten aspecto y destacan la que esta seleccionada. */
+/* Las pestañas de vitrina y compras comparten el mismo aspecto. */
 .catalogo__pestanas,
 .compras__pestanas {
   display: flex;
@@ -369,6 +385,7 @@ p {
   background: var(--color-verde-claro);
 }
 
+/* La pestaña seleccionada recibe un fondo distinto para que se note la pagina abierta. */
 .catalogo__pestana--activa,
 .compras__pestana--activa {
   border-color: var(--color-verde);
@@ -381,7 +398,7 @@ p {
   min-height: 180px;
 }
 
-/* Buscador, selector y productos. */
+/* Buscador, selector y tarjetas que muestran los resultados de las APIs. */
 .productos-fetch,
 .productos-axios {
   text-align: left;
@@ -414,6 +431,7 @@ p {
   margin-top: 24px;
 }
 
+/* Todas las tarjetas tienen la misma estructura; la imagen se ajusta sin deformarse. */
 .producto-card {
   display: flex;
   flex-direction: column;
@@ -427,6 +445,7 @@ p {
   object-fit: contain;
 }
 
+/* El boton queda al final de la tarjeta aunque los nombres tengan distinta longitud. */
 .producto-card__agregar {
   min-height: 42px;
   margin-top: auto;
@@ -458,7 +477,7 @@ p {
   color: var(--color-secundario);
 }
 
-/* Las acciones de la canasta quedan agrupadas por producto. */
+/* Cada producto de la canasta tiene sus propios controles para cambiar unidades o quitarlo. */
 .carrito__productos {
   display: grid;
   gap: 16px;
@@ -483,6 +502,7 @@ p {
   margin: 4px 6px 4px 0;
 }
 
+/* El mensaje ocupa el lugar de la lista mientras no haya productos. */
 .carrito__vacio {
   padding: 20px;
   border: 1px dashed #9bb9a5;
@@ -492,11 +512,12 @@ p {
   text-align: center;
 }
 
+/* Separa el boton para vaciar la canasta de la lista de productos. */
 .carrito > button {
   margin-top: 18px;
 }
 
-/* Resumen de valores y confirmacion del pedido. */
+/* El resumen separa las cantidades y deja espacio para el mensaje de confirmacion. */
 .resumen {
   max-width: 600px;
   margin: 0 auto;
@@ -521,6 +542,7 @@ p {
   font-weight: 700;
 }
 
+/* Mantiene juntas las acciones del resumen y permite que se acomoden si falta espacio. */
 .resumen__acciones {
   display: flex;
   flex-wrap: wrap;
@@ -528,7 +550,7 @@ p {
   margin-top: 18px;
 }
 
-/* Mensajes de carga y error para las consultas de productos. */
+/* El aro animado acompana los mensajes de carga de Fetch y Axios. */
 .loading-message {
   display: flex;
   align-items: center;
@@ -548,6 +570,7 @@ p {
   animation: girar 800ms linear infinite;
 }
 
+/* Los errores usan un fondo y texto diferentes para que no se confundan con resultados. */
 [role='alert'] {
   margin: 16px 0;
   padding: 14px;
@@ -564,7 +587,7 @@ p {
   }
 }
 
-/* Pagina para las direcciones que no corresponden a una ruta. */
+/* Presentacion de la pagina 404 cuando la direccion no coincide con ninguna ruta. */
 .not-found {
   max-width: 650px;
   margin: 20px auto;
@@ -602,7 +625,7 @@ p {
   background: var(--color-verde-oscuro);
 }
 
-/* En pantallas pequeñas el menu y el pie se acomodan en varias lineas. */
+/* En pantallas pequenas se reduce el espacio y se reordenan las tarjetas, el menu y el pie. */
 @media (max-width: 700px) {
   :root {
     --alto-encabezado: 64px;
@@ -669,6 +692,7 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Respeta la preferencia del dispositivo y reduce las animaciones. */
   *,
   *::before,
   *::after {
