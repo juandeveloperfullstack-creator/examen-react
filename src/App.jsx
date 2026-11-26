@@ -1,9 +1,12 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import MainLayout from './layouts/MainLayout'
+import Carrito from './pages/Carrito'
 import Inicio from './pages/Inicio'
+import NoEncontrado from './pages/NoEncontrado'
 import ProductosAxios from './pages/ProductosAxios'
 import ProductosFetch from './pages/ProductosFetch'
+import Resumen from './pages/Resumen'
 import SectionCatalogo from './pages/SectionCatalogo'
 import SectionCompras from './pages/SectionCompras'
 
@@ -22,36 +25,12 @@ function App() {
 
         {/* Ambas paginas de compras comparten la portada y las pestañas. */}
         <Route path="compras" element={<SectionCompras />}>
-          <Route
-            index
-            element={
-              <section>
-                <h2>Mi canasta</h2>
-                <p>El contenido de la canasta se agregara despues.</p>
-              </section>
-            }
-          />
-          <Route
-            path="resumen"
-            element={
-              <section>
-                <h2>Mi pedido</h2>
-                <p>El resumen del pedido se agregara despues.</p>
-              </section>
-            }
-          />
+          <Route index element={<Carrito />} />
+          <Route path="resumen" element={<Resumen />} />
         </Route>
 
-        {/* Muestra un mensaje si la direccion no corresponde a una pagina. */}
-        <Route
-          path="*"
-          element={
-            <section>
-              <h1>Pagina no encontrada</h1>
-              <p>Revisa la direccion o vuelve al inicio.</p>
-            </section>
-          }
-        />
+        {/* Si no sxe coincide con ninguna ruta, muestra la pagina 404. */}
+        <Route path="*" element={<NoEncontrado />} />
       </Route>
     </Routes>
   )

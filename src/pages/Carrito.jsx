@@ -25,7 +25,7 @@ function Carrito() {
 
             {/* Si no hay productos, se muestra un mensaje en vez de la lista */}
             {canastaVacia ? (
-                <p>Tu canasta está vacía.</p>
+                <p className="carrito__vacio">Tu canasta está vacía.</p>
             ) : (
                 <div className="carrito__productos">
                     {/* Crea una tarjeta para cada producto de la canasta */}
@@ -33,11 +33,12 @@ function Carrito() {
                         // Calcula el subtotal de este producto
                         const cantidad = producto.cantidad ?? 1
                         const subtotal = producto.price * cantidad
+                        const claveProducto = producto.claveCarrito ?? producto.id
                         // Las dos APIs usan nombres distintos para la imagen
                         const imagen = producto.image ?? producto.thumbnail
 
                         return (
-                            <article className="carrito__producto" key={producto.id}>
+                            <article className="carrito__producto" key={claveProducto}>
                                 {/* Si no hay imagen, muestra un texto en su lugar */}
                                 {imagen ? (
                                     <img src={imagen} alt={producto.title} loading="lazy" />
@@ -53,21 +54,21 @@ function Carrito() {
                                 {/* Estos botones actualizan la cantidad o quitan el producto */}
                                 <button
                                     type="button"
-                                    onClick={() => restarUnidad(producto.id)}
+                                    onClick={() => restarUnidad(claveProducto)}
                                     disabled={canastaVacia}
                                 >
                                     Restar unidad
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={() => sumarUnidad(producto.id)}
+                                    onClick={() => sumarUnidad(claveProducto)}
                                     disabled={canastaVacia}
                                 >
                                     Sumar unidad
                                 </button>
                                 <button
                                     type="button"
-                                    onClick={() => eliminarProducto(producto.id)}
+                                    onClick={() => eliminarProducto(claveProducto)}
                                     disabled={canastaVacia}
                                 >
                                     Eliminar producto

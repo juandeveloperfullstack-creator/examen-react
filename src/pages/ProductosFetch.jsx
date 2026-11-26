@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useCarritoStore } from '../store/useCarritoStore.js'
 
 const URL_PRODUCTOS = 'https://fakestoreapi.com/products' // variable donde se almacena la API
 
@@ -9,6 +10,8 @@ const formatoPrecio = new Intl.NumberFormat('es', {
 })
 
 function ProductosFetch() {
+    const agregarProducto = useCarritoStore((state) => state.agregarProducto)
+
     // aqui se guardan los productos recibidos y el texto que se escribe en el buscador.
     const [productos, setProductos] = useState([])
     const [busqueda, setBusqueda] = useState('')
@@ -79,7 +82,11 @@ function ProductosFetch() {
                 placeholder="Escribe el nombre de un producto"
             />
 
-            {cargando && <p role="status">Cargando productos...</p>}
+            {cargando && (
+                <p className="loading-message" role="status">
+                    Cargando productos...
+                </p>
+            )}
 
             {!cargando && error && <p role="alert">{error}</p>}
 
@@ -100,6 +107,18 @@ function ProductosFetch() {
                             <h2>{producto.title}</h2>
                             <p>{producto.category}</p>
                             <p>{formatoPrecio.format(producto.price)}</p>
+                            <button
+                                className="producto-card__agregar"
+                                type="button"
+                                onClick={() =>
+                                    agregarProducto({
+                                        ...producto,
+                                        origen: 'fakestoreapi',
+                                    })
+                                }
+                            >
+                                Agregar a la canasta
+                            </button>
                         </article>
                     ))}
                 </div>

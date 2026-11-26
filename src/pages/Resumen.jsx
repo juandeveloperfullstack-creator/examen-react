@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useCarritoStore } from '../store/useCarritoStore.js'
 
 const COSTO_ENVIO = 0
@@ -8,6 +9,7 @@ const formatoPrecio = new Intl.NumberFormat('es', {
 })
 
 function Resumen() {
+    const [pedidoConfirmado, setPedidoConfirmado] = useState(false)
     const productos = useCarritoStore((state) => state.productos)
     const vaciarCarrito = useCarritoStore((state) => state.vaciarCarrito)
 
@@ -41,13 +43,31 @@ function Resumen() {
             <p>Envío: {formatoPrecio.format(envio)}</p>
             <p>Total: {formatoPrecio.format(total)}</p>
 
-            <button
-                type="button"
-                onClick={vaciarCarrito}
-                disabled={canastaVacia}
-            >
-                Vaciar canasta
-            </button>
+            {pedidoConfirmado && (
+                <p className="pedido-confirmado" role="status">
+                    Pedido confirmado. Gracias por comprar en Merca Cauca.
+                </p>
+            )}
+
+            <div className="resumen__acciones">
+                <button
+                    type="button"
+                    onClick={() => {
+                        vaciarCarrito()
+                        setPedidoConfirmado(false)
+                    }}
+                    disabled={canastaVacia}
+                >
+                    Vaciar canasta
+                </button>
+                <button
+                    type="button"
+                    onClick={() => setPedidoConfirmado(true)}
+                    disabled={canastaVacia || pedidoConfirmado}
+                >
+                    Confirmar pedido
+                </button>
+            </div>
         </section>
     )
 }

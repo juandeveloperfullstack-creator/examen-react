@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { obtenerCategorias, obtenerProductos } from '../api/apiDummy.js'
+import { useCarritoStore } from '../store/useCarritoStore.js'
 
 const formatoPrecio = new Intl.NumberFormat('es', {
     style: 'currency',
@@ -7,6 +8,8 @@ const formatoPrecio = new Intl.NumberFormat('es', {
 })
 /* aqui se guardan las categorias  */
 function ProductosAxios() {
+    const agregarProducto = useCarritoStore((state) => state.agregarProducto)
+
     const [categorias, setCategorias] = useState([])
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('todas')
     const [productos, setProductos] = useState([])
@@ -95,9 +98,17 @@ function ProductosAxios() {
                 ))}
             </select>
 
-            {cargandoCategorias && <p role="status">Cargando categorias...</p>}
+            {cargandoCategorias && (
+                <p className="loading-message" role="status">
+                    Cargando categorias...
+                </p>
+            )}
             {errorCategorias && <p role="alert">{errorCategorias}</p>}
-            {cargandoProductos && <p role="status">Cargando productos...</p>}
+            {cargandoProductos && (
+                <p className="loading-message" role="status">
+                    Cargando productos...
+                </p>
+            )}
             {!cargandoProductos && errorProductos && (
                 <p role="alert">{errorProductos}</p>
             )}
@@ -119,6 +130,18 @@ function ProductosAxios() {
                             <h2>{producto.title}</h2>
                             <p>{producto.category}</p>
                             <p>{formatoPrecio.format(producto.price)}</p>
+                            <button
+                                className="producto-card__agregar"
+                                type="button"
+                                onClick={() =>
+                                    agregarProducto({
+                                        ...producto,
+                                        origen: 'dummyjson',
+                                    })
+                                }
+                            >
+                                Agregar a la canasta
+                            </button>
                         </article>
                     ))}
                 </div>
