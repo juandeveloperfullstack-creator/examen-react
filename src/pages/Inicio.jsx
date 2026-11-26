@@ -20,7 +20,7 @@ const secciones = [
 
 function Inicio() {
     return (
-        <main className="inicio">
+        <section className="inicio">
             <h1>Bienvenido a Merca Cauca</h1>
             <p>Encuentra productos y consulta tus compras.</p>
 
@@ -45,7 +45,7 @@ function Inicio() {
                     </section>
                 ))}
             </div>
-        </main>
+        </section>
     )
 }
 
